@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Sortable - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  #sortable { display: inline-block; list-style-type: none;  }
+  #sortable li { font-size: 2em; height: 100%; border-radius: 70px  ; background-color: white
+;margin: 10px; border-style: solid; border-width: 5px;}
+  #sortable li {float: right}
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>!function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
+</script>
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+
+    var sec = 0;
+    function pad ( val ) { return val > 9 ? val : "0" + val; }
+    setInterval( function(){
+        $("#seconds").html(pad(++sec%60));
+        $("#minutes").html(pad(parseInt(sec/60,10)));
+        check_win();
+    }, 1000);
+  </script>
+</head>
+<body style="background-color: #f4bf42">
+   <h1 class="text-center"><label id="minutes">00</label>:<label id="seconds">00</label></h1>
+
+
+
+<style>
+  .ui-state-default {
+    text-align: center;
+  }
+</style>
+
+<div class="contaier">
+<div class="row">
+<h3 class="text-center">
+<ul id="sortable" style="
+    padding-top: 10%;
+">
+  <li id="1" class="ui-state-default col-sm-2">1</li>
+  <li id="2" class="ui-state-default col-sm-2">2</li>
+  <li id="3" class="ui-state-default col-sm-2">3</li>
+  <li id="4" class="ui-state-default col-sm-2">4</li>
+    <li id="5" class="ui-state-default col-sm-2">5</li>
+  <li id="6" class="ui-state-default col-sm-2">6</li>
+
+</ul>
+</h3></div></div>
+ 
+<script>
+
+function check_win()
+{
+  var el1 = document.getElementById("1"); 
+  var el2 = document.getElementById("2"); 
+  var el3 = document.getElementById("3"); 
+  var el4 = document.getElementById("4"); 
+  var el5 = document.getElementById("5"); 
+  var el6 = document.getElementById("6"); 
+
+
+  var x1 = el1.offsetLeft;
+  var x2 = el2.offsetLeft;
+  var x3 = el3.offsetLeft;
+  var x4 = el4.offsetLeft;
+    var x5 = el5.offsetLeft;
+  var x6 = el6.offsetLeft;
+
+  if(x1 < x2 &&  x2 < x3 && x3 < x4 && x4 < x5 && x5 < x6)
+    alert(1);
+}
+
+</script>
+ 
+</body>
+</html>
